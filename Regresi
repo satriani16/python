@@ -1,0 +1,35 @@
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+x=[[151],[174],[148],[185],[154],[128],[135]]
+y=[[63],[69],[50],[91],[48],[45],[47]]
+
+model=LinearRegression()
+model.fit(x,y)
+y_predict=model.predict(x)
+
+plt.figure()
+plt.plot(x,y,'g.')
+plt.axis([120,200,30,100])
+plt.xlabel('Tinggi Badan')
+plt.ylabel('Berat Badan')
+plt.grid(True)
+plt.plot(x,y_predict,color='b')
+plt.show()
+
+rata2_x=(151+174+148+185+154+128+135)/7
+print('Rata-Rata x yaitu %.2f'%rata2_x)
+rata2_y=(63+69+50+91+48+45+47)/7
+print('Rata-Rata y yaitu %.2f'%rata2_y)
+
+a=(151-rata2_x)*(63-rata2_y)+(174-rata2_x)*(69-rata2_y)+(148-rata2_x)*(50-rata2_y)+(185-rata2_x)*(91-rata2_y)+(154-rata2_x)*(48-rata2_y)+(128-rata2_x)*(45-rata2_y)+(135-rata2_x)*(74-rata2_y)
+b=(151-rata2_x)**2+(174-rata2_x)**2+(148-rata2_x)**2+(185-rata2_x)**2+(154-rata2_x)**2+(128-rata2_x)**2+(135-rata2_x)**2
+c=(63-rata2_y)**2+(69-rata2_y)**2+(50-rata2_y)**+(91-rata2_y)**2+(48-rata2_y)**2+(45-rata2_y)**2+(74-rata2_y)**2
+r=a/(b*c)**0.5
+print('r = ',r)
+
+#slope b
+slope_b=a/b**2
+print('Slope b = ',slope_b)
+#intercept a
+intercept_a=rata2_y-(slope_b*rata2_x)
+print('Intercept a= ',intercept_a)
